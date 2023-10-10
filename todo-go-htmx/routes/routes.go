@@ -14,12 +14,12 @@ func sendTodos(w http.ResponseWriter) {
 }
 
 func index(w http.ResponseWriter, r *http.Request) {
-	tmpl, err := template.ParseFiles("templates/index.html")
-	if err != nil {
-		log.Fatal(err)
-	}
+	tmpl := template.Must(template.ParseFiles("templates/index.html"))
 
-	tmpl.Execute(w, nil)
+	err := tmpl.Execute(w, nil)
+	if err != nil {
+		fmt.Println("Could not execute index template", err)
+	}
 }
 
 func markTodo(w http.ResponseWriter, r *http.Request) {
