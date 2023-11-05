@@ -1,13 +1,36 @@
-<!DOCTYPE html>
-<html lang="en"> 
+<!doctype html>
+<html> 
   <head>
-    <script src="https://unpkg.com/htmx.org@1.9.5" type="text/javascript"></script>
+    <a href="#" hx-get="index.html" hx-trigger="load, click"></a>
+
+    <script src="https://unpkg.com/htmx.org@1.9.6" integrity="sha384-FhXw7b6AlE/jyjlZH5iHa/tTe9EpJ1Y55RjcgPbjeWMskSxZt1v9qkxLJWNJaGni" crossorigin="anonymous"></script>
     <link href="https://cdn.jsdelivr.net/npm/daisyui@3.9.2/dist/full.css" rel="stylesheet" type="text/css" />
     <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      console.log('hello world')
+    </script>
   </head>
 
   <body class="container max-w-xl mx-auto">
     <h1 class="font-bold text-2xl my-16">HELLO TODO</h1>
+
+
+
+    <div id="todos" class="my-8">
+      {{ block "Todos" .}}
+      <h1>hello again</h1>    <form class="grid grid-cols-7 m-4 gap-2">
+      <input class="col-span-5 input input-bordered" type="text" name="todo" placeholder="What needs to be done?">
+      <button class="btn btn-accent col-span-2" hx-post="/create" hx-target="#todos" hx-swap="innerHTML">Add Todo</button>
+    </form>
+        {{ range . }}
+          <div class="grid grid-cols-7 gap-2 mt-4">
+            <p class="col-span-5 {{if .Done}} line-through{{end}}">
+              {{.Todo}}
+            </p>
+          </div>
+        {{ end }}
+      {{ end }} 
+    </div>
   </body>
 
 </html>

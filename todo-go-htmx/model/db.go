@@ -22,4 +22,6 @@ func Setup() {
 	if err != nil {
 		fmt.Println("Could not ping to db", err)
 	}
+
+	fmt.Println("Connected to db")
 }
