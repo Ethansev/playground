@@ -1,7 +1,7 @@
 package lexer
 
 import (
-	"monkey/token"
+	"1-monkey/token"
 	"testing"
 )
 
@@ -9,8 +9,8 @@ func TestNextToken(t *testing.T) {
 	input := `=+(){},;`
 
 	tests := []struct {
-		expectedType   token.TokenType
-		expctedLiteral string
+		expectedType    token.TokenType
+		expectedLiteral string
 	}{
 		{token.ASSIGN, "="},
 		{token.PLUS, "+"},
@@ -32,7 +32,7 @@ func TestNextToken(t *testing.T) {
 			t.Fatalf("tests[%d] - tokentype wrong. expected =%q, got=%q", i, tt.expectedType, tok.Type)
 		}
 
-		if tok.Literal != tt.expctedLiteral {
+		if tok.Literal != tt.expectedLiteral {
 			t.Fatalf("tests[%d] - literal wrong. expected=%q, got=%q", i, tt.expectedLiteral, tok.Literal)
 		}
 	}
